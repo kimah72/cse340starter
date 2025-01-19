@@ -55,7 +55,7 @@ h1, h2, h3, p, li {
 }
 .menu a {
   text-align: center;
-  padding: .5rem 1 rem;
+  padding: .5rem 1rem;
   text-decoration: none;
   display: block;
   width: 100%;
@@ -80,12 +80,10 @@ h1, h2, h3, p, li {
   grid-column: auto;
   justify-self: center;
   width: 150%;
-  flex-direction: 1 1 300px;
 }
 
 .vehicle-info {
   position: relative;
-  grid-template-columns: 2;
   color: #0cb4df;
   background-color: rgba(255, 255, 255, 0.5);;
   padding: 5px;
@@ -149,8 +147,7 @@ h1, h2, h3, p, li {
       display: flex;
       grid-column: auto;
       justify-self: center;
-      width: 250%;
-      flex-direction: 1 1 auto;
+      width: 200%;
     }
     .reviews {
       padding: 20px;
