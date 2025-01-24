@@ -34,5 +34,5 @@ WHERE
 --5.6
 UPDATE inventory 
 SET 
-    inv_image = CONCAT(SUBSTRING(inv_image FROM 1 FOR POSITION('/' IN inv_image)), 'vehicles', SUBSTRING(inv_image FROM POSITION('/' IN inv_image))),
-    inv_thumbnail = CONCAT(SUBSTRING(inv_thumbnail FROM 1 FOR POSITION('/' IN inv_thumbnail)), 'vehicles', SUBSTRING(inv_thumbnail FROM POSITION('/' IN inv_thumbnail)));
+    inv_image = REPLACE(inv_image, '/images/', '/images/vehicles/'),
+    inv_thumbnail = REPLACE(inv_thumbnail, '/images/', '/images/vehicles/');
