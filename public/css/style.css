@@ -8,6 +8,21 @@
   padding: 0;
 }
 
+body {
+  font-size: 14px;
+  font-family: 'Anton', 'Outfit', sans-serif;
+}
+
+main {
+  margin: 10px;
+}
+
+h1, h2, h3, p, li {
+  font-family: 'Outfit';
+  color: black;
+}
+
+/* Header */
 header {
   display: flex;
   justify-content: space-between;
@@ -28,106 +43,147 @@ header {
   font-size: 1em;
   color: black;
 }
-
-h1, h2, h3, p, li {
-  font-family: Outfit;
-  color: black;
+/* Composition */
+.flow > * + * {
+  margin: 10em;
 }
+
+.grid-flow {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 1em;
+}
+
+/* Navigation */
+
 .menu {
   display: flex; 
   flex-direction: column;
   background-color: black;
   padding: 0;
   margin: 10px 0;
-  font-size: 1.5em;
+  font-size: 1em;
+  width: 100%;
 }
+
 .menu ul {
   display: flex;
   flex-direction: row;
   justify-content: space-around;
   list-style: none;
-  padding: 1rem;
+  padding: .5em;
   margin: 0;
   width: 100%;
 }
+
 .menu li {
   display: block;
 }
 .menu a {
   text-align: center;
-  padding: .5rem 1rem;
+  padding: .5rem .5rem;
   text-decoration: none;
   display: block;
   width: 100%;
   color: white;
 }
 
-.grouped-content {
-  margin: 20px;
+/* Top Half of Main Page */
+
+h1 {
+  margin: 20px 0px;
+}
+
+.delorean {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  position: relative;
+  width: 100%;
+}
+
+.delorean img {
+  width: 80%;
+  margin-left: 5em;
+  height: auto;
+}
+
+.car-info {
+  position: absolute;
+  top: 2.5%;
+  left: 2.5%;
+  margin-left: 2em;
+  background-color: rgba(255, 255, 255, 0.5);;
+  color: #0cb4df;
   padding: 20px;
 }
 
-.vehicle-highlight {
+.car-info li {
+  list-style: none;
+  padding: 2px;
+}
+
+.button {
+  display: inline-block;
+  padding: 6px;
+  background-color: #0cb4df;
+  color: white;
+  border-radius: 5px;
+  text-decoration: none;
+  box-shadow: 1px 1px 2.5px #2f3e46;
+  margin-top: 5px;
+}
+
+/* Bottom Half of Main Page */
+.bottom-grid {
+  margin: 20px;
+}
+.reviews {
+  text-align: left;
+}
+
+.reviews h3, .upgrades h3 {
+  margin-top: 25px;
+  margin-bottom: 20px;
+  font-size: 1.25rem;
+}
+
+.reviews ul {
+  margin: 0;
+  padding: 0 0 0 15px;
+  line-height: 1.75rem;
+}
+
+.upgrades div {
+  text-align: center;
+  justify-items: center;
+}
+
+.upgrades-grid {
+  margin-top: 20px;
   display: grid;
   grid-template-columns: 1fr 1fr;
-  padding: 20px;
+  gap: 10px;
   justify-items: center;
   align-items: center;
 }
 
-.vehicle-highlight img {
-  display: flex;
-  grid-column: auto;
-  justify-self: center;
-  width: 150%;
-}
-
-.vehicle-info {
-  position: relative;
-  color: #0cb4df;
-  background-color: rgba(255, 255, 255, 0.5);;
-  padding: 5px;
-}
-
-.vehicle-info li {
-  list-style: none;
-}
-.content-columns {
-  text-align: center ;
-}
-.reviews {
-  padding: 20px;
-  justify-self: center;
-}
 .upgrade-item {
   margin: 10px 0;
-  padding: 10px;
+  padding: 20px;
   background-color: #0cb4df;
   border-radius: 5px;
-  width: 150px;
-  height: 150px;
-  justify-self: center;
-  text-align: center;
-}
-.cta-button {
-  display: inline-block;
-  padding: 10px 20px;
-  margin: 10px 0;
-  background-color: #30aece; 
-  color: darkblue;
-  text-align: center;
-  text-decoration: none;
-  font-size: 16px;
-  font-weight: bold;
-  border: none;
-  border-radius: 3px;
-  cursor: pointer;
-  transition: background-color 0.3s ease;
+  display: flex;
+  justify-content: center;
+  align-items: center;
 }
 
-.cta-button:hover {
-  background-color: #1f7388;
+.upgrade-item img {
+  max-width: 50px;
+  height: auto;
+  margin: 0 auto;
 }
+/* Media for larger screens */
 
   @media (min-width: 600px) {
     body {
@@ -136,51 +192,55 @@ h1, h2, h3, p, li {
       background-size: 375px 375px;
     }
     #wrapper {
-  
       margin: 20px 75px;
+      max-width: 960px;
+      width: 95%;
+      justify-self: center;
       padding: 10px;
       background-color: white; 
       border: 5px solid #30aece; 
       border-radius: 5px;
     }
-    .vehicle-highlight img {
-      display: flex;
-      grid-column: auto;
-      justify-self: center;
-      width: 200%;
+    .menu {
+      font-size: 1.5em;
     }
-    .reviews {
-      padding: 20px;
-      grid-column: 2 / 3;
-      grid-row: 2;
-    
+    menu ul {
+      padding: 1rem;
     }
-    .grouped-content {
+    menu a {
+      padding: .5rem 1rem;
+    }
+    .delorean img {
+      margin: 0;
+      width: 100%;
+      max-width: 600px;
+    }
+    .car-info {
       padding: 20px;
+      top: 8%;
+      left: 12%;
+    }
+    .bottom-grid {
       display: grid;
       grid-template-columns: 1fr 1fr;
-      grid-template-rows: auto;
-      gap: 20px;
+      grid-template-rows: 1fr;
+      gap: 25px;
     }
-    .content-columns {
-      padding: 0px;
-      grid-row: 2;
-      gap: 10px;
+    .reviews {
+      grid-column: 2/3;
+      grid-row: 1/2;
     }
-    
     .upgrades {
-      display: inline-block;
-      grid-template-columns: 1fr
+      grid-column: 1 / 2;
+      grid-row: 1 / 2;
+      text-align: center;
     }
     .upgrade-item {
-      display: inline-block;
-      margin: 10px 0;
-      padding: 10px;
-      background-color: #0cb4df;
-      border-radius: 5px;
+      height: 100px;
       width: 150px;
-      height: 150px;
-      justify-self: center;
-      text-align: center;
+    }
+    .upgrade-item img {
+      max-width: 100px;
+      height: auto;
     }
   }
