@@ -183,6 +183,20 @@ h1 {
   height: auto;
   margin: 0 auto;
 }
+
+/* error css */
+.error-page {
+  text-align: center;
+  font-size: medium;
+}
+.fun-section {
+  margin: 0 5rem;
+  padding-top: 10px;
+  line-height: 2rem;
+  text-align: center;
+  font-size: medium;
+}
+
 /* Media for larger screens */
 
   @media (min-width: 600px) {
