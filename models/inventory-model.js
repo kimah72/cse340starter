@@ -1,3 +1,5 @@
+// This file contains functions that interact with the database to manage inventory data.
+
 const pool = require("../database/")
 
 /* ***************************

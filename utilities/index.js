@@ -1,3 +1,5 @@
+// This utility file contains helper functions for various tasks like navigation building and HTML formatting.
+
 const invModel = require("../models/inventory-model")
 const Util = {}
 

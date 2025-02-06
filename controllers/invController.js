@@ -1,3 +1,11 @@
+/* ***************************
+ * Manager for handling different tasks related to an inventory system
+ * Fetches Data
+ * Prepares Data for Display
+ * Renders Views
+ * Handles Errors
+ * *************************** */
+
 const invModel = require("../models/inventory-model")
 const utilities = require("../utilities/")
 
@@ -24,16 +32,12 @@ invCont.buildByClassificationId = async function (req, res, next) {
  * ***************************/
 invCont.getVehicleDetails = async function (req, res) {
   try {
-    console.log('Fetching vehicle with ID:', req.params.id);
     const vehicle = await invModel.getVehicleById(req.params.id);
     if (!vehicle) {
-      console.log('Vehicle not found for ID:', req.params.id);
       return res.status(404).send('Vehicle not found');
     }
-    console.log('Vehicle data:', vehicle);
     const html = utilities.formatVehicleDetails(vehicle);
     let nav = await utilities.getNav()
-    console.log('Rendering detail view for:', vehicle.inv_make, vehicle.inv_model);
     res.render("./inventory/detail", { 
       title: `${vehicle.inv_make} ${vehicle.inv_model} Details`,
       nav,
