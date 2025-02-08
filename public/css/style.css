@@ -199,19 +199,28 @@ h1 {
 
 /* Classification Grid Styles */
 #inv-display {
-  display: flex;
-  flex-direction: column;
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
+  gap: 20px;
   padding: 20px;
 }
 
 #inv-display li {
+  margin-bottom: 0;
   list-style-type: none;
   background-color: #fff;
   border: 1px solid #e0e0e0;
   border-radius: 8px;
   box-shadow: 0 2px 4px rgba(0,0,0,0.1);
-  margin-bottom: 20px;
   padding: 20px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  transition: transform 0.3s ease;
+}
+
+#inv-display li:hover {
+  transform: translateY(-5px);
 }
 
 #inv-display a {
@@ -219,7 +228,6 @@ h1 {
   color: #333;
 }
 
-/* Image styling within the grid */
 #inv-display img {
   max-width: 100%;
   height: auto;
@@ -227,8 +235,8 @@ h1 {
   margin-bottom: 10px;
 }
 
-/* Vehicle Name and Price Styling */
 .namePrice {
+  margin-top: 15px;
   text-align: center;
 }
 
@@ -295,6 +303,7 @@ img {
 }
 
 footer {
+  font-family: 'Outfit';
   margin: auto;
   padding-left: 1em;
 }
@@ -364,9 +373,6 @@ footer {
       grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
       gap: 20px;
       padding: 20px;
-    }
-    #inv-display li {
-      margin-bottom: 0;
     }
     .namePrice {
       text-align: left;
