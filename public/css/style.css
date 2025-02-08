@@ -197,6 +197,40 @@ h1 {
   font-size: medium;
 }
 
+/* styling for details */
+
+.vehicle-details {
+  display: flex;
+  flex-direction: column;
+  margin: 20px;
+}
+
+.vehicle-image {
+  margin-bottom: 20px;
+}
+
+.vehicle-image img {
+  max-width: 100%;
+  height: auto;
+  display: block;
+}
+
+.vehicle-content h1 {
+  margin-top: 0;
+}
+
+.vehicle-content p {
+  margin-bottom: 10px;
+}
+
+body, html {
+  overflow-x: hidden;
+}
+
+img {
+  object-fit: cover;
+}
+
 /* Media for larger screens */
 
   @media (min-width: 600px) {
@@ -256,5 +290,21 @@ h1 {
     .upgrade-item img {
       max-width: 100px;
       height: auto;
+    }
+    .vehicle-details {
+      flex-direction: row; 
+    }
+    .vehicle-image {
+      flex: 1 1 100%;
+      margin-right: 20px;
+      margin-bottom: 0; 
+    }
+    .vehicle-image img {
+      max-width: 100%;
+      height: 100%; 
+      object-fit: contain;
+    }
+    .vehicle-content {
+      flex: 1 1 50%;
     }
   }

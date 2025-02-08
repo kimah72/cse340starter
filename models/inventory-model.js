@@ -1,5 +1,3 @@
-// This file contains functions that interact with the database to manage inventory data.
-
 const pool = require("../database/")
 
 /* ***************************
@@ -21,26 +19,30 @@ async function getInventoryByClassificationId(classification_id) {
       WHERE i.classification_id = $1`,
       [classification_id]
     )
+    console.log(`Query for classification ${classification_id} returned ${data.rows.length} results`);
     return data.rows
   } catch (error) {
-    console.error("getclassificationsbyid error " + error)
+    console.error("getInventoryByClassificationId error " + error)
+    return [];
   }
 }
 
 /* ***************************
- *  Get specific vehicle by inventory_id
+ *  Get specific vehicle by ID
  * ************************** */
-async function getVehicleById(id) {
+async function getVehicleById(inv_id) {
   try {
     const data = await pool.query(
       "SELECT * FROM public.inventory WHERE inv_id = $1",
-      [id]
+      [inv_id]
     )
-    return data.rows[0]; 
+    return data.rows[0] // Return just one vehicle or null if not found
   } catch (error) {
-    console.error("getVehicleById error " + error);
+    console.error("getVehicleById error " + error)
+    return null // Return null on error or if vehicle not found
   }
 }
+
 module.exports = {
   getClassifications, 
   getInventoryByClassificationId,

@@ -29,6 +29,11 @@ app.use(static)
 app.get("/", utilities.handleErrors(baseController.buildHome))
 // Inventory routes
 app.use("/inv", inventoryRoute)
+// Server crash
+app.get("/trigger-500-error", (req, res, next) => {
+  const undefinedValue = undefined;
+  undefinedValue.ExistentProperty;
+});
 // File Not Found Route - must be last route in list
 app.use(async (req, res, next) => {
   next({status: 404, message: 'Oops! Something went wrong.'})
@@ -48,7 +53,7 @@ app.use(async (err, req, res, next) => {
     message,
     nav
   })
-})
+});
 
 /* ***********************
  * Local Server Information
