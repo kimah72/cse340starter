@@ -94,6 +94,54 @@ h1 {
   margin: 20px 0px;
 }
 
+/* Flash Message Styling */
+#messages {
+  text-align: center;
+  margin: 20px 0;
+}
+
+#messages ul {
+  list-style-type: none;
+  padding: 0;
+  margin: 0;
+}
+
+#messages ul.notice {
+  background-color: #cce5ff;
+  border: 1px solid hsl(210, 60%, 80%);
+  padding: 10px;
+  border-radius: 4px;
+  box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+  display: inline-block;
+  max-width: 300px;
+  margin: 20px auto;
+}
+
+#messages ul.notice li {
+  font-weight: bold;
+  text-align: center;
+}
+
+/* register styling */
+.register .password-requirements {
+  font-size: 0.8em;
+  color: #666;
+  margin-bottom: 10px;
+}
+
+.password-requirements ul {
+  margin-left: 20px;
+}
+
+input:required:invalid, input:focus:invalid {
+  border: 2px solid red;
+}
+
+input:required:valid {
+  border: 2px solid green;
+}
+
+/* Main page */
 .delorean {
   display: flex;
   justify-content: center;
@@ -301,7 +349,49 @@ body, html {
 img {
   object-fit: cover;
 }
+/* Login & Register css */
+form {
+  max-width: 300px;
+  margin: 0 auto;
+}
+form + p {
+  text-align: center;
+  margin-top: 20px; 
+}
 
+label, input, button {
+  display: block;
+  margin-bottom: 10px;
+}
+
+input {
+  width: 100%;
+  padding: 8px;
+  border: 1px solid #ddd;
+  border-radius: 4px;
+}
+
+button {
+  background-color: #4CAF50;
+  color: white;
+  padding: 10px 15px;
+  border: none;
+  border-radius: 4px;
+  cursor: pointer;
+}
+
+button:hover {
+  background-color: #45a049;
+}
+
+a {
+  color: #007BFF;
+  text-decoration: none;
+}
+
+a:hover {
+  text-decoration: underline;
+}
 footer {
   font-family: 'Outfit';
   margin: auto;
