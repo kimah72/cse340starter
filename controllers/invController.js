@@ -112,15 +112,25 @@ invCont.buildAddInventory = async function (req, res) {
 invCont.addClassification = async function (req, res) {
   let nav = await utilities.getNav()
   const { classification_name } = req.body
+  console.log('Processing classification:', classification_name) // Debug log
+
   const classificationResult = await invModel.addClassification(classification_name)
 
   if (classificationResult) {
     req.flash('message', 'Classification added successfully!')
-    nav = await utilities.getNav() // Refresh nav to include new classification
-    return res.render("inventory/management", { title: "Inventory Management", nav, message: req.flash('message') })
+    nav = await utilities.getNav() // Refresh nav
+    return res.render("inventory/management", { 
+      title: "Inventory Management", 
+      nav, 
+      message: req.flash('message') 
+    })
   } else {
     req.flash('message', 'Failed to add classification.')
-    return res.render("inventory/add-classification", { title: "Add Classification", nav, message: req.flash('message') })
+    return res.render("inventory/add-classification", { 
+      title: "Add Classification", 
+      nav, 
+      message: req.flash('message') 
+    })
   }
 }
 
@@ -147,15 +157,19 @@ invCont.addInventory = async function (req, res) {
 
   if (inventoryResult) {
     req.flash('message', 'Inventory item added successfully!')
-    return res.render("inventory/management", { title: "Inventory Management", nav, message: req.flash('message') })
+    return res.render("inventory/management", { 
+      title: "Inventory Management", 
+      nav, 
+      message: req.flash('message') 
+    })
   } else {
-    req.flash('message', 'Failed to add inventory item.')
+    req.flash('message', 'Failed to add inventory item or vehicle already exists.')
     res.render("inventory/add-inventory", { 
       title: "Add Inventory", 
       nav, 
       message: req.flash('message'), 
       classificationList,
-      ...inventoryData
+      ...inventoryData 
     })
   }
 }

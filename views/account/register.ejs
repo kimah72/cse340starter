@@ -4,7 +4,7 @@
     <% if (errors) { %>
         <ul class="notice">
        <% errors.array().forEach(error => { %>
-         <li><%= error.msg %></li>
+         <li><%- error.msg.replace(/\n/g, '<br>') %></li>
       <%  }) %>
        </ul>
       <% } %>

@@ -95,31 +95,23 @@ h1 {
 }
 
 /* Flash Message Styling */
-#messages {
+.notice {
   text-align: center;
-  margin: 20px 0;
-}
-
-#messages ul {
-  list-style-type: none;
-  padding: 0;
-  margin: 0;
-}
-
-#messages ul.notice {
-  background-color: #0cb4df;
-  border: 1px solid #0a9bd5;
-  padding: 10px;
-  border-radius: 4px;
-  box-shadow: 0 2px 5px rgba(0,0,0,0.1);
-  display: inline-block;
-  max-width: 300px;
   margin: 20px auto;
+  max-width: 300px;
+  background-color: #0cb4df;
+  border: 1px solid #0a9bd5; 
+  padding: 10px;
+  border-radius: 4px; 
+  box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1), inset 0 0 5px rgba(0, 0, 0, 0.1); 
+  font-family: 'Outfit', sans-serif; 
+  font-weight: bold; 
+  list-style-type: none; 
 }
 
-#messages ul.notice li {
-  font-weight: bold;
-  text-align: center;
+.notice li {
+  color: white;
+  padding: 5px 0;
 }
 
 /* register styling */
