@@ -13,7 +13,7 @@ router.get("/register", utilities.handleErrors(accountController.buildRegister))
 // Process the registration data
 router.post(
     "/register",
-    regValidate.registationRules(),
+    regValidate.registrationRules(),
     regValidate.checkRegData,
     utilities.handleErrors(accountController.registerAccount)
   )
@@ -23,5 +23,13 @@ router.use((err, req, res, next) => {
   console.error(err.stack)
   res.status(500).send("Something broke!")
 })
+
+// Process the login attempt
+router.post(
+    "/login",
+    (req, res) => {
+      res.status(200).send('This is a placeholder response for login. Have a great day!')
+    }
+  )
 
 module.exports = router;

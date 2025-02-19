@@ -68,4 +68,96 @@ invCont.getVehicleDetails = async function (req, res) {
   }
 }
 
+/* ***************************
+*  Build Management
+* ************************** */
+invCont.buildManagement = async function (req, res) {
+  let nav = await utilities.getNav()
+  res.render("inventory/management", {
+    title: "Inventory Management",
+    nav,
+    message: req.flash('message')
+  })
+}
+
+/* ***************************
+ *  Build Add Classification Form
+ * ************************** */
+invCont.buildAddClassification = async function (req, res) {
+  let nav = await utilities.getNav()
+  res.render("inventory/add-classification", {
+    title: "Add Classification",
+    nav,
+    message: null
+  })
+}
+
+/* ***************************
+ *  Build Add Inventory Form
+ * ************************** */
+invCont.buildAddInventory = async function (req, res) {
+  let nav = await utilities.getNav()
+  const classificationList = await utilities.buildClassificationList()
+  res.render("inventory/add-inventory", {
+    title: "Add Inventory",
+    nav,
+    message: null,
+    classificationList
+  })
+}
+
+/* ***************************
+ *  Add classification view
+ * ************************** */
+invCont.addClassification = async function (req, res) {
+  let nav = await utilities.getNav()
+  const { classification_name } = req.body
+  const classificationResult = await invModel.addClassification(classification_name)
+
+  if (classificationResult) {
+    req.flash('message', 'Classification added successfully!')
+    nav = await utilities.getNav() // Refresh nav to include new classification
+    return res.render("inventory/management", { title: "Inventory Management", nav, message: req.flash('message') })
+  } else {
+    req.flash('message', 'Failed to add classification.')
+    return res.render("inventory/add-classification", { title: "Add Classification", nav, message: req.flash('message') })
+  }
+}
+
+/* ***************************
+ *  Add inventory item view
+ * ************************** */
+invCont.addInventory = async function (req, res) {
+  let nav = await utilities.getNav()
+  const classificationList = await utilities.buildClassificationList(req.body.classification_id || null)
+  const inventoryData = {
+    classification_id: req.body.classification_id,
+    inv_make: req.body.inv_make,
+    inv_model: req.body.inv_model,
+    inv_year: req.body.inv_year,
+    inv_color: req.body.inv_color,
+    inv_description: req.body.inv_description,
+    inv_image: req.body.inv_image,
+    inv_thumbnail: req.body.inv_thumbnail,
+    inv_price: req.body.inv_price,
+    inv_miles: req.body.inv_miles
+  }
+
+  const inventoryResult = await invModel.addInventory(inventoryData)
+
+  if (inventoryResult) {
+    req.flash('message', 'Inventory item added successfully!')
+    return res.render("inventory/management", { title: "Inventory Management", nav, message: req.flash('message') })
+  } else {
+    req.flash('message', 'Failed to add inventory item.')
+    res.render("inventory/add-inventory", { 
+      title: "Add Inventory", 
+      nav, 
+      message: req.flash('message'), 
+      classificationList,
+      ...inventoryData
+    })
+  }
+}
+
 module.exports = invCont

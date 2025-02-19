@@ -9,15 +9,16 @@
        </ul>
       <% } %>
     <form action="/account/register" method="post">
-        <label for="account_firstname">First Name:</label>
-        <input type="text" id="account_firstname" name="account_firstname" required>
-        
-        <label for="account_lastname">Last Name:</label>
-        <input type="text" id="account_lastname" name="account_lastname" required>
-        
-        <label for="account_email">Email:</label>
-        <input type="email" id="account_email" name="account_email" required>
-        
+        <form action="/account/register" method="post">
+            <label for="account_firstname">First Name:</label>
+            <input type="text" name="account_firstname" id="account_firstname" required value="<%= locals.account_firstname %>">
+            
+            <label for="account_lastname">Last Name:</label>
+            <input type="text" name="account_lastname" id="account_lastname" required value="<%= locals.account_lastname %>">
+            
+            <label for="account_email">Email:</label>
+            <input type="email" name="account_email" id="account_email" required value="<%= locals.account_email %>">
+            
         <div class="password-requirements">
           <p>Password must be at least 8 characters and contain:</p>
           <ul>
