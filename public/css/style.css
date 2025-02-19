@@ -107,8 +107,8 @@ h1 {
 }
 
 #messages ul.notice {
-  background-color: #cce5ff;
-  border: 1px solid hsl(210, 60%, 80%);
+  background-color: #0cb4df;
+  border: 1px solid #0a9bd5;
   padding: 10px;
   border-radius: 4px;
   box-shadow: 0 2px 5px rgba(0,0,0,0.1);
