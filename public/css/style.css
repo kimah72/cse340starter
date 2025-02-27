@@ -176,6 +176,8 @@ input:required:valid {
 
 /* Bottom Half of Main Page */
 .bottom-grid {
+  display: flex;
+  flex-direction: column;
   margin: 20px;
 }
 .reviews {

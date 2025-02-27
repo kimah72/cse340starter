@@ -2,7 +2,7 @@ const express = require("express")
 const router = new express.Router() 
 const utilities = require("../utilities/")
 const invController = require("../controllers/invController")
-const validate = require("../utilities/inventory-validation") // Ensure correct path
+const validate = require("../utilities/inventory-validation")
 
 // Route to build inventory by classification view
 router.get('/type/:classificationId', utilities.handleErrors(invController.buildByClassificationId));
@@ -36,5 +36,6 @@ router.use((err, req, res, next) => {
   console.error(err.stack)
   res.status(500).send("Something broke!")
 })
+
 
 module.exports = router;

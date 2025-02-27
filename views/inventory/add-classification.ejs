@@ -10,6 +10,7 @@
 <form action="/inv/add-classification" method="POST">
   <label for="classification_name">Classification Name:</label>
   <input type="text" id="classification_name" name="classification_name" required 
-         pattern="^[a-zA-Z0-9]+$" title="No spaces or special characters allowed.">
+         pattern="^[A-Z][a-zA-Z0-9]*$" 
+         title="Classification must start with a capital letter and contain only alphanumeric characters (no spaces or special characters).">
   <button type="submit">Add Classification</button>
 </form>

@@ -112,17 +112,17 @@ invCont.buildAddInventory = async function (req, res) {
 invCont.addClassification = async function (req, res) {
   let nav = await utilities.getNav()
   const { classification_name } = req.body
-  console.log('Processing classification:', classification_name) // Debug log
+  console.log('Processing classification:', classification_name)
 
   const classificationResult = await invModel.addClassification(classification_name)
 
   if (classificationResult) {
     req.flash('message', 'Classification added successfully!')
-    nav = await utilities.getNav() // Refresh nav
+    nav = await utilities.getNav()
     return res.render("inventory/management", { 
       title: "Inventory Management", 
       nav, 
-      message: req.flash('message') 
+      message: req.flash('message')
     })
   } else {
     req.flash('message', 'Failed to add classification.')
