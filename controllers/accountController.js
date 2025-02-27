@@ -1,6 +1,6 @@
 const accountModel = require("../models/account-model")
 const utilities = require("../utilities/")
-const bcrypt = require("bcryptjs")
+
 
 /* ****************************************
 *  Deliver login view
@@ -37,24 +37,11 @@ async function registerAccount(req, res) {
     account_password 
   } = req.body
 
-    // Hash the password before storing
-    let hashedPassword
-    try {
-      // regular password and cost (salt is generated automatically)
-      hashedPassword = await bcrypt.hashSync(account_password, 10)
-    } catch (error) {
-      req.flash("notice", 'Sorry, there was an error processing the registration.')
-      res.status(500).render("account/register", {
-        title: "Registration",
-        nav,
-      })
-    }
-
   const regResult = await accountModel.registerAccount(
     account_firstname,
     account_lastname,
     account_email,
-    hashedPassword
+    account_password
   )
 
   if (regResult) {
@@ -75,5 +62,25 @@ async function registerAccount(req, res) {
   }
 }
 
+/* ****************************************
+ *  Process Login
+ * *************************************** */
+async function processLogin(req, res, next) {
+  let nav = await utilities.getNav()
+  const { account_email, account_password } = req.body
 
-module.exports = { buildLogin, buildRegister, registerAccount }
+  const accountData = await accountModel.getAccountByEmail(account_email)
+  if (!accountData || accountData.account_password !== account_password) {
+    req.flash("notice", "Invalid email or password.")
+    return res.status(400).render("account/login", {
+      title: "Login",
+      nav,
+      account_email,
+    })
+  }
+
+  req.flash("notice", `Welcome back, ${accountData.account_firstname}!`)
+  res.redirect("/account/")
+}
+
+module.exports = { buildLogin, buildRegister, registerAccount, processLogin }
