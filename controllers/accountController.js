@@ -85,7 +85,7 @@ async function processLogin(req, res, next) {
   const { account_email, account_password } = req.body
 
   const accountData = await accountModel.getAccountByEmail(account_email)
-  if (!accountData || accountData.account_password !== account_password) {
+  if (!accountData || !bcrypt.compareSync(account_password, accountData.account_password)) {
     req.flash("notice", "Invalid email or password.")
     return res.status(400).render("account/login", {
       title: "Login",
