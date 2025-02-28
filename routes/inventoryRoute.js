@@ -11,7 +11,7 @@ router.get('/type/:classificationId', utilities.handleErrors(invController.build
 router.get('/detail/:id', utilities.handleErrors(invController.getVehicleDetails));
 
 // Build management view
-router.get("/", utilities.handleErrors(invController.buildManagement))
+router.get("/", utilities.handleErrors(invController.buildManagementView))
 
 // Add GET routes for forms
 router.get("/add-classification", utilities.handleErrors(invController.buildAddClassification))
@@ -36,6 +36,5 @@ router.use((err, req, res, next) => {
   console.error(err.stack)
   res.status(500).send("Something broke!")
 })
-
 
 module.exports = router;

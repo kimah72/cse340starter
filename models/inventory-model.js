@@ -42,41 +42,41 @@ async function getVehicleById(inv_id) {
 }
 
 /* ***************************
- *  Add new classification
+ * Add New Classification
  * ************************** */
 async function addClassification(classification_name) {
   try {
-    const sql = "INSERT INTO classification (classification_name) VALUES ($1) RETURNING *"
-    const result = await pool.query(sql, [classification_name])
-    return result.rows[0]
+    const sql = "INSERT INTO public.classification (classification_name) VALUES ($1) RETURNING *";
+    const data = await pool.query(sql, [classification_name]);
+    return data.rows[0];
   } catch (error) {
-    console.error("Error adding classification:", error)
-    return false
+    console.error("addClassification error " + error);
+    return null;
   }
 }
 
 /* ***************************
- *  Add new inventory item
+ * Add New Inventory
  * ************************** */
-async function addInventory(data) {
+async function addInventory(inventoryData) {
   try {
-    const sql = "INSERT INTO inventory (classification_id, inv_make, inv_model, inv_year, inv_color, inv_description, inv_image, inv_thumbnail, inv_price, inv_miles) VALUES ($1, $2, $3, $4, $5, $6, $7, $8, $9, $10) RETURNING *"
-    const result = await pool.query(sql, [
-      data.classification_id,
-      data.inv_make,
-      data.inv_model,
-      data.inv_year,
-      data.inv_color,
-      data.inv_description,
-      data.inv_image,
-      data.inv_thumbnail,
-      data.inv_price,
-      data.inv_miles
-    ])
-    return result.rows[0]
+    const { 
+      classification_id, inv_make, inv_model, inv_year, inv_description, 
+      inv_image, inv_thumbnail, inv_price, inv_miles, inv_color 
+    } = inventoryData;
+    const sql = `
+      INSERT INTO public.inventory (
+        classification_id, inv_make, inv_model, inv_year, inv_description,
+        inv_image, inv_thumbnail, inv_price, inv_miles, inv_color
+      ) VALUES ($1, $2, $3, $4, $5, $6, $7, $8, $9, $10) RETURNING *`;
+    const data = await pool.query(sql, [
+      classification_id, inv_make, inv_model, inv_year, inv_description,
+      inv_image, inv_thumbnail, inv_price, inv_miles, inv_color
+    ]);
+    return data.rows[0];
   } catch (error) {
-    console.error("Error adding inventory:", error)
-    return false
+    console.error("addInventory error " + error);
+    return null;
   }
 }
 
@@ -85,13 +85,12 @@ async function addInventory(data) {
  * ********************* */
 async function checkExistingClassification(classification_name) {
   try {
-    const sql = "SELECT * FROM classification WHERE classification_name = $1"
-    const result = await pool.query(sql, [classification_name])
-    console.log('Checking classification:', classification_name, 'Result:', result.rowCount) // Debug log
-    return result.rowCount > 0
+    const sql = "SELECT * FROM public.classification WHERE classification_name = $1";
+    const data = await pool.query(sql, [classification_name]);
+    return data.rowCount > 0; 
   } catch (error) {
-    console.error("Error checking existing classification:", error)
-    return false
+    console.error("checkExistingClassification error " + error);
+    return true; 
   }
 }
 

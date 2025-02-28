@@ -99,18 +99,17 @@ h1 {
   text-align: center;
   margin: 20px auto;
   max-width: 300px;
-  background-color: #0cb4df;
-  border: 1px solid #0a9bd5; 
+  background-color: #33c2e6;
+  border: 1px solid #055972; 
   padding: 10px;
   border-radius: 4px; 
-  box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1), inset 0 0 5px rgba(0, 0, 0, 0.1); 
   font-family: 'Outfit', sans-serif; 
   font-weight: bold; 
   list-style-type: none; 
 }
 
 .notice li {
-  color: white;
+  color: black;
   padding: 5px 0;
 }
 
