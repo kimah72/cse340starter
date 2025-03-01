@@ -3,7 +3,7 @@
 <% if (locals.errors && locals.errors.length > 0) { %>
   <ul class="notice">
     <% locals.errors.forEach(error => { %>
-      <li><%- error.msg.replace(/\n/g, '<br>') %></li>
+      <li><%= error.msg %></li>
     <% }) %>
   </ul>
 <% } %>
