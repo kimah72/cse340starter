@@ -10,6 +10,9 @@ router.get("/login", utilities.handleErrors(accountController.buildLogin))
 // Route to deliver register view
 router.get("/register", utilities.handleErrors(accountController.buildRegister))
 
+// Route to deliver account view
+router.get("/", utilities.handleErrors(accountController.buildManagement))
+
 // Process the registration data
 router.post(
     "/register",
@@ -18,22 +21,11 @@ router.post(
     utilities.handleErrors(accountController.registerAccount)
   )
 
-// Error handling middleware
-router.use((err, req, res, next) => {
-  console.error(err.stack)
-  res.status(500).send("Something broke!")
-})
-
-// Process the login attempt
-router.post(
-  "/login",
-  regValidate.loginRules(),
-  regValidate.checkLoginData,
-  // This is how it will handle it later once the login process is built
-  // utilities.handleErrors(accountController.processLogin)
-  (req, res) => {
-    res.status(200).send('login process complete')
-  }
-)
+  router.post(
+    "/login",
+    regValidate.loginRules(),
+    regValidate.checkLoginData,
+    utilities.handleErrors(accountController.accountLogin)
+  )
 
 module.exports = router;
