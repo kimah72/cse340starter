@@ -100,18 +100,18 @@ validate.loginRules = () => {
  * ***************************** */
 validate.checkLoginData = async (req, res, next) => {
   const { account_email, account_password } = req.body
-  let errors = validationResult(req)
+  let errors = []
+  errors = validationResult(req)
   if (!errors.isEmpty()) {
     let nav = await utilities.getNav()
-    // This is what displays all the errors
-    req.flash("notice", errors.array().map(error => error.msg))
-    return res.render("account/login", {
+    res.render("account/login", {
+      errors,
       title: "Login",
       nav,
-      errors: errors.array(),
       account_email,
       account_password
     })
+    return 
   }
   next()
 }
