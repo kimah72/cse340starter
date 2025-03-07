@@ -99,7 +99,7 @@ async function accountLogin(req, res) {
   const { account_email, account_password } = req.body
   const accountData = await accountModel.getAccountByEmail(account_email)
   if (!accountData) {
-    req.flash("notice", "Please check your credentials and try again.")
+    req.flash("notice", "Please check your email. Try again.")
     res.status(400).render("account/login", {
       title: "Login",
       nav,
@@ -120,7 +120,7 @@ async function accountLogin(req, res) {
       return res.redirect("/account/")
     }
     else {
-      req.flash("message notice", "Please check your credentials and try again.")
+      req.flash("message notice", "Password is incorrect. Try again.")
       res.status(400).render("account/login", {
         title: "Login",
         nav,
