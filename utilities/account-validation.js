@@ -90,28 +90,30 @@ validate.loginRules = () => {
     body("account_password")
       .trim()
       .notEmpty()
-      .isLength({ min: 1 })
-      .withMessage("Please provide a password."),
+      .isLength({ min: 8 })
+      .withMessage("Does not meet password requirements.")
   ]
 }
 
 /* ******************************
- * Check login data and return errors or proceed
+ * Check Login Data and return errors or continue to login
  * ***************************** */
 validate.checkLoginData = async (req, res, next) => {
-  const { account_email } = req.body
+  const { account_email, account_password } = req.body
   let errors = validationResult(req)
   if (!errors.isEmpty()) {
     let nav = await utilities.getNav()
-    res.render("account/login", {
-      errors: errors.array(),
+    // This is what displays all the errors
+    req.flash("notice", errors.array().map(error => error.msg))
+    return res.render("account/login", {
       title: "Login",
       nav,
+      errors: errors.array(),
       account_email,
+      account_password
     })
-    return
   }
   next()
 }
 
-module.exports = { registrationRules: validate.registrationRules, checkRegData: validate.checkRegData, loginRules: validate.loginRules, checkLoginData: validate.checkLoginData }
+module.exports = validate
