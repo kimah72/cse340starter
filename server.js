@@ -44,7 +44,7 @@ app.use(function(req, res, next){
 app.use(bodyParser.json())
 app.use(bodyParser.urlencoded({ extended: true }))
 
-// W09 Prepare step 2 - works here
+// W09 Authentication and Authorization step 2 - works here
 app.use(cookieParser())
 app.use(utilities.checkJWTToken)
 
