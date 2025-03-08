@@ -13,6 +13,13 @@ router.get('/detail/:id', utilities.handleErrors(invController.getVehicleDetails
 // Build management view
 router.get("/", utilities.handleErrors(invController.buildManagementView))
 
+// Build table view
+router.get("/getInventory/:classification_id", utilities.handleErrors(invController.getInventoryJSON))
+
+// Modify
+router.get("/edit/:id", utilities.handleErrors(invController.editInventoryView));
+// Delete
+
 // Add GET routes for forms
 router.get("/add-classification", utilities.handleErrors(invController.buildAddClassification))
 router.get("/add-inventory", utilities.handleErrors(invController.buildAddInventory))

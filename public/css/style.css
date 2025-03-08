@@ -420,6 +420,66 @@ footer {
   padding-left: 1em;
 }
 
+/* table container */
+#inventoryDisplay {
+  width: 100%;
+  max-width: 400px; 
+  margin: 20px auto;
+  border-collapse: collapse;
+  font-family: Arial, sans-serif;
+}
+
+/* Header styling */
+#inventoryDisplay thead th {
+  background-color: #333;
+  color: white;
+  padding: 10px;
+  text-align: left;
+}
+
+/* Body styling */
+#inventoryDisplay tbody td {
+  padding: 10px;
+  border-bottom: 1px solid #ddd;
+}
+
+/* Alternating row colors */
+#inventoryDisplay tbody tr:nth-child(even) {
+  background-color: #f9f9f9;
+}
+
+/* Hover effect */
+#inventoryDisplay tbody tr:hover {
+  background-color: #f1f1f1;
+}
+
+/* Link styling */
+#inventoryDisplay a {
+  text-decoration: none;
+  font-family: Arial, sans-serif;
+  color: #333;
+  padding: 5px 10px;
+  border-radius: 3px;
+  background-color: white;
+}
+
+#classificationList {
+  width: 100%;
+  max-width: 300px;
+  margin-bottom: 10px;
+  padding: 8px;
+  border: 1px solid #ddd;
+  border-radius: 4px;
+  font-family: 'Outfit', sans-serif;
+  font-size: 1em;
+  background-color: white;
+}
+
+#classificationList:focus {
+  border-color: #0cb4df; /* Matches your button color */
+  outline: none;
+}
+
 /* Media for larger screens */
 
   @media (min-width: 600px) {

@@ -73,9 +73,13 @@ invCont.getVehicleDetails = async function (req, res) {
 * ************************** */
 invCont.buildManagementView = async function (req, res, next) {
   let nav = await utilities.getNav();
+  // updating data activity - start - Teacher uses classificationSelect, I use List
+  const classificationList = await utilities.buildClassificationList()
+  
   res.render("./inventory/management", {
     title: "Vehicle Management",
     nav,
+    classificationList
   });
 };
 
@@ -100,7 +104,8 @@ invCont.buildAddInventory = async function (req, res) {
   res.render("inventory/add-inventory", {
     title: "Add Inventory",
     nav,
-    classificationList
+    classificationList,
+    errors: null
   })
 }
 
@@ -183,5 +188,52 @@ invCont.addInventory = async function (req, res, next) {
     });
   }
 };
+
+/* ***************************
+ *  Return Inventory by Classification As JSON
+ * ************************** */
+invCont.getInventoryJSON = async (req, res, next) => {
+  const classification_id = parseInt(req.params.classification_id)
+  const invData = await invModel.getInventoryByClassificationId(classification_id)
+  if (invData[0].inv_id) {
+    return res.json(invData)
+  } else {
+    next(new Error("No data returned"))
+  }
+}
+
+/* ***************************
+ *  Build edit inventory view
+ * ************************** */
+invCont.editInventoryView = async function (req, res, next) {
+  // get inv id from request
+  const inv_id = req.params.id
+
+  // grab your nav
+  let nav = await utilities.getNav()
+
+  // use inv id to get inv based on id
+  const itemData = await invModel.getVehicleById(inv_id) 
+  
+  const classificationList = await utilities.buildClassificationList(itemData.classification_id)
+  const itemName = `${itemData.inv_make} ${itemData.inv_model}`
+  res.render("inventory/edit-vehicle", {
+    title: "Edit " + itemName,
+    nav,
+    classificationList: classificationList,
+    errors: null,
+    inv_id: itemData.inv_id,
+    inv_make: itemData.inv_make,
+    inv_model: itemData.inv_model,
+    inv_year: itemData.inv_year,
+    inv_description: itemData.inv_description,
+    inv_image: itemData.inv_image,
+    inv_thumbnail: itemData.inv_thumbnail,
+    inv_price: itemData.inv_price,
+    inv_miles: itemData.inv_miles,
+    inv_color: itemData.inv_color,
+    classification_id: itemData.classification_id
+  })
+}
 
 module.exports = invCont
