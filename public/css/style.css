@@ -113,6 +113,22 @@ h1 {
   padding: 5px 0;
 }
 
+.success {
+  text-align: center;
+  list-style-type: none;
+  margin: 20px auto;
+  max-width: 400px;
+  padding: 10px;
+  border-radius: 4px;
+  font-family: 'Outfit', sans-serif;
+  font-weight: bold;
+  font-size: 2em;
+}
+
+/* .account {
+  border: 1px dashed black;
+} */
+
 /* register styling */
 .register .password-requirements {
   font-size: 0.8em;
@@ -424,6 +440,11 @@ a:hover {
   box-shadow: 0 4px 8px rgba(0, 0, 0, 0.3);
 }
 
+.logged-in {
+  text-align: center;
+  margin: 20px;
+  font-size: 2em;
+}
 footer {
   font-family: 'Outfit';
   margin: auto;
