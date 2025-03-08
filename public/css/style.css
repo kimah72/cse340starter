@@ -480,6 +480,15 @@ footer {
   outline: none;
 }
 
+/* delete p styling */
+.confirm {
+  text-align: center;
+  color: red;
+  font-weight: bolder;
+  text-decoration: underline;
+  margin: 10px 0px;
+}
+
 /* Media for larger screens */
 
   @media (min-width: 600px) {
