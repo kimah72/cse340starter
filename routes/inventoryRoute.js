@@ -24,6 +24,8 @@ router.post("/update/",
   utilities.handleErrors(invController.updateInventory))
 
 // Delete
+router.get("/delete/:id", utilities.handleErrors(invController.buildDeleteConfirmView));
+router.post("/delete/", utilities.handleErrors(invController.deleteInventoryItem));
 
 // Add GET routes for forms
 router.get("/add-classification", utilities.handleErrors(invController.buildAddClassification))
