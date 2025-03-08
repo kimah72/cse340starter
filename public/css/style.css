@@ -1,5 +1,5 @@
 /******* Change Box Model ***************/
-@import url('https://fonts.googleapis.com/css2?family=Anton&family=Outfit:wght@100..900&display=swap');
+@import url("https://fonts.googleapis.com/css2?family=Anton&family=Outfit:wght@100..900&display=swap");
 *,
 *:before,
 *:after {
@@ -10,15 +10,19 @@
 
 body {
   font-size: 14px;
-  font-family: 'Anton', 'Outfit', sans-serif;
+  font-family: "Anton", "Outfit", sans-serif;
 }
 
 main {
   margin: 10px;
 }
 
-h1, h2, h3, p, li {
-  font-family: 'Outfit';
+h1,
+h2,
+h3,
+p,
+li {
+  font-family: "Outfit";
   color: black;
 }
 
@@ -26,8 +30,8 @@ h1, h2, h3, p, li {
 header {
   display: flex;
   justify-content: space-between;
-  align-items: center; 
-  padding: 10px; 
+  align-items: center;
+  padding: 10px;
 }
 
 .siteName a {
@@ -57,7 +61,7 @@ header {
 /* Navigation */
 
 .menu {
-  display: flex; 
+  display: flex;
   flex-direction: column;
   background-color: black;
   padding: 0;
@@ -71,7 +75,7 @@ header {
   flex-direction: row;
   justify-content: space-around;
   list-style: none;
-  padding: .5em;
+  padding: 0.5em;
   margin: 0;
   width: 100%;
 }
@@ -81,7 +85,7 @@ header {
 }
 .menu a {
   text-align: center;
-  padding: .5rem .5rem;
+  padding: 0.5rem 0.5rem;
   text-decoration: none;
   display: block;
   width: 100%;
@@ -100,12 +104,12 @@ h1 {
   margin: 20px auto;
   max-width: 300px;
   background-color: #33c2e6;
-  border: 1px solid #055972; 
+  border: 1px solid #055972;
   padding: 10px;
-  border-radius: 4px; 
-  font-family: 'Outfit', sans-serif; 
-  font-weight: bold; 
-  list-style-type: none; 
+  border-radius: 4px;
+  font-family: "Outfit", sans-serif;
+  font-weight: bold;
+  list-style-type: none;
 }
 
 .notice li {
@@ -120,7 +124,7 @@ h1 {
   max-width: 400px;
   padding: 10px;
   border-radius: 4px;
-  font-family: 'Outfit', sans-serif;
+  font-family: "Outfit", sans-serif;
   font-weight: bold;
   font-size: 2em;
 }
@@ -140,7 +144,8 @@ h1 {
   margin-left: 20px;
 }
 
-input:required:invalid, input:focus:invalid {
+input:required:invalid,
+input:focus:invalid {
   border: 2px solid red;
 }
 
@@ -168,7 +173,7 @@ input:required:valid {
   top: 2.5%;
   left: 2.5%;
   margin-left: 2em;
-  background-color: rgba(255, 255, 255, 0.5);;
+  background-color: rgba(255, 255, 255, 0.5);
   color: #0cb4df;
   padding: 20px;
 }
@@ -199,7 +204,8 @@ input:required:valid {
   text-align: left;
 }
 
-.reviews h3, .upgrades h3 {
+.reviews h3,
+.upgrades h3 {
   margin-top: 25px;
   margin-bottom: 20px;
   font-size: 1.25rem;
@@ -268,7 +274,7 @@ input:required:valid {
   background-color: #fff;
   border: 1px solid #e0e0e0;
   border-radius: 8px;
-  box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
   padding: 20px;
   display: flex;
   flex-direction: column;
@@ -325,7 +331,7 @@ input:required:valid {
   border: 1px solid #e0e0e0;
   border-radius: 8px;
   padding: 20px;
-  box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
 }
 
 .vehicle-image {
@@ -351,7 +357,8 @@ input:required:valid {
   width: 100px;
 }
 
-body, html {
+body,
+html {
   overflow-x: hidden;
 }
 
@@ -365,10 +372,12 @@ form {
 }
 form + p {
   text-align: center;
-  margin-top: 20px; 
+  margin-top: 20px;
 }
 
-label, input, button {
+label,
+input,
+button {
   display: block;
   margin-bottom: 10px;
 }
@@ -387,7 +396,7 @@ textarea {
   border: 1px solid #ddd;
   border-radius: 4px;
   height: 100px;
-  resize: vertical; 
+  resize: vertical;
 }
 
 button {
@@ -405,7 +414,7 @@ button:hover {
 }
 
 a {
-  color: #007BFF;
+  color: #007bff;
   text-decoration: none;
 }
 
@@ -429,14 +438,14 @@ a:hover {
   color: white;
   border-radius: 5px;
   transition: all 0.3s ease;
-  font-family: 'Outfit', sans-serif; 
+  font-family: "Outfit", sans-serif;
   font-size: 1.2em;
   box-shadow: 0 2px 5px rgba(0, 0, 0, 0.2);
 }
 
 .inv-management a:hover {
-  background-color: #0a9bd5; 
-  transform: translateY(-2px); 
+  background-color: #0a9bd5;
+  transform: translateY(-2px);
   box-shadow: 0 4px 8px rgba(0, 0, 0, 0.3);
 }
 
@@ -446,7 +455,7 @@ a:hover {
   font-size: 2em;
 }
 footer {
-  font-family: 'Outfit';
+  font-family: "Outfit";
   margin: auto;
   padding-left: 1em;
 }
@@ -454,7 +463,7 @@ footer {
 /* table container */
 #inventoryDisplay {
   width: 100%;
-  max-width: 400px; 
+  max-width: 400px;
   margin: 20px auto;
   border-collapse: collapse;
   font-family: Arial, sans-serif;
@@ -501,7 +510,7 @@ footer {
   padding: 8px;
   border: 1px solid #ddd;
   border-radius: 4px;
-  font-family: 'Outfit', sans-serif;
+  font-family: "Outfit", sans-serif;
   font-size: 1em;
   background-color: white;
 }
@@ -522,87 +531,87 @@ footer {
 
 /* Media for larger screens */
 
-  @media (min-width: 600px) {
-    body {
-      background-image: url('../images/site/checkerboard.jpg');
-      background-repeat: repeat;
-      background-size: 375px 375px;
-    }
-    #wrapper {
-      margin: 20px 75px;
-      max-width: 960px;
-      width: 95%;
-      justify-self: center;
-      padding: 10px;
-      background-color: white; 
-      border: 5px solid #30aece; 
-      border-radius: 5px;
-    }
-    .menu {
-      font-size: 1.5em;
-    }
-    menu ul {
-      padding: 1rem;
-    }
-    menu a {
-      padding: .5rem 1rem;
-    }
-    .delorean img {
-      margin: 0;
-      width: 100%;
-      max-width: 600px;
-    }
-    .car-info {
-      padding: 20px;
-      top: 8%;
-      left: 12%;
-    }
-    .bottom-grid {
-      display: grid;
-      grid-template-columns: 1fr 1fr;
-      grid-template-rows: 1fr;
-      gap: 25px;
-    }
-    .reviews {
-      grid-column: 2/3;
-      grid-row: 1/2;
-    }
-    .upgrades {
-      grid-column: 1 / 2;
-      grid-row: 1 / 2;
-      text-align: center;
-    }
-    .upgrade-item {
-      height: 100px;
-      width: 150px;
-    }
-    .upgrade-item img {
-      max-width: 100px;
-      height: auto;
-    }
-    #inv-display {
-      display: grid;
-      grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
-      gap: 20px;
-      padding: 20px;
-    }
-    .namePrice {
-      text-align: left;
-    }
-    .vehicle-details {
-      flex-direction: row; 
-    }
-    .vehicle-image {
-      flex: 1 1 100%;
-      margin-right: 20px;
-      margin-bottom: 0; 
-    }
-    .vehicle-image img {
-      max-width: 100%;
-      height: 100%; 
-      object-fit: contain;
-    }
-    .vehicle-content {
-      flex: 1 1 50%;
-    }
+@media (min-width: 600px) {
+  body {
+    background-image: url("../images/site/checkerboard.jpg");
+    background-repeat: repeat;
+    background-size: 375px 375px;
   }
+  #wrapper {
+    margin: 20px 75px;
+    max-width: 960px;
+    width: 95%;
+    justify-self: center;
+    padding: 10px;
+    background-color: white;
+    border: 5px solid #30aece;
+    border-radius: 5px;
+  }
+  .menu {
+    font-size: 1.5em;
+  }
+  menu ul {
+    padding: 1rem;
+  }
+  menu a {
+    padding: 0.5rem 1rem;
+  }
+  .delorean img {
+    margin: 0;
+    width: 100%;
+    max-width: 600px;
+  }
+  .car-info {
+    padding: 20px;
+    top: 8%;
+    left: 12%;
+  }
+  .bottom-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    grid-template-rows: 1fr;
+    gap: 25px;
+  }
+  .reviews {
+    grid-column: 2/3;
+    grid-row: 1/2;
+  }
+  .upgrades {
+    grid-column: 1 / 2;
+    grid-row: 1 / 2;
+    text-align: center;
+  }
+  .upgrade-item {
+    height: 100px;
+    width: 150px;
+  }
+  .upgrade-item img {
+    max-width: 100px;
+    height: auto;
+  }
+  #inv-display {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
+    gap: 20px;
+    padding: 20px;
+  }
+  .namePrice {
+    text-align: left;
+  }
+  .vehicle-details {
+    flex-direction: row;
+  }
+  .vehicle-image {
+    flex: 1 1 100%;
+    margin-right: 20px;
+    margin-bottom: 0;
+  }
+  .vehicle-image img {
+    max-width: 100%;
+    height: 100%;
+    object-fit: contain;
+  }
+  .vehicle-content {
+    flex: 1 1 50%;
+  }
+}
