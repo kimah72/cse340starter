@@ -16,8 +16,13 @@ router.get("/", utilities.handleErrors(invController.buildManagementView))
 // Build table view
 router.get("/getInventory/:classification_id", utilities.handleErrors(invController.getInventoryJSON))
 
-// Modify
+// Route to modify inventory detail
 router.get("/edit/:id", utilities.handleErrors(invController.editInventoryView));
+router.post("/update/", 
+  validate.updateInventoryRules(), 
+  validate.checkUpdateData, 
+  utilities.handleErrors(invController.updateInventory))
+
 // Delete
 
 // Add GET routes for forms

@@ -206,18 +206,12 @@ invCont.getInventoryJSON = async (req, res, next) => {
  *  Build edit inventory view
  * ************************** */
 invCont.editInventoryView = async function (req, res, next) {
-  // get inv id from request
-  const inv_id = req.params.id
-
-  // grab your nav
+  const inv_id = parseInt(req.params.id)
   let nav = await utilities.getNav()
-
-  // use inv id to get inv based on id
   const itemData = await invModel.getVehicleById(inv_id) 
-  
   const classificationList = await utilities.buildClassificationList(itemData.classification_id)
   const itemName = `${itemData.inv_make} ${itemData.inv_model}`
-  res.render("inventory/edit-vehicle", {
+  res.render("./inventory/edit-vehicle", {
     title: "Edit " + itemName,
     nav,
     classificationList: classificationList,
@@ -234,6 +228,66 @@ invCont.editInventoryView = async function (req, res, next) {
     inv_color: itemData.inv_color,
     classification_id: itemData.classification_id
   })
+}
+
+/* ***************************
+ *  Update Inventory Data
+ * ************************** */
+invCont.updateInventory = async function (req, res, next) {
+  let nav = await utilities.getNav()
+  const {
+    inv_id,
+    inv_make,
+    inv_model,
+    inv_description,
+    inv_image,
+    inv_thumbnail,
+    inv_price,
+    inv_year,
+    inv_miles,
+    inv_color,
+    classification_id,
+  } = req.body
+  const updateResult = await invModel.updateInventory(
+    inv_id,  
+    inv_make,
+    inv_model,
+    inv_description,
+    inv_image,
+    inv_thumbnail,
+    inv_price,
+    inv_year,
+    inv_miles,
+    inv_color,
+    classification_id
+  )
+
+  if (updateResult) {
+    const itemName = updateResult.inv_make + " " + updateResult.inv_model
+    req.flash("notice", `The ${itemName} was successfully updated.`)
+    res.redirect("/inv/")
+  } else {
+    const classificationList = await utilities.buildClassificationList(classification_id)
+    const itemName = `${inv_make} ${inv_model}`
+    req.flash("notice", "Sorry, the update failed.")
+    res.status(501).render("inventory/edit-vehicle", {
+      title: "Edit " + itemName,
+      nav,
+      classificationList,
+      errors: null,
+      inv_id,
+      inv_make,
+      inv_model,
+      inv_year,
+      inv_description,
+      inv_image,
+      inv_thumbnail,
+      inv_price,
+      inv_miles,
+      inv_color,
+      classification_id
+    })
+  }
 }
 
 module.exports = invCont
