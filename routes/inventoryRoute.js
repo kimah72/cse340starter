@@ -1,54 +1,81 @@
-const express = require("express")
-const router = new express.Router() 
-const utilities = require("../utilities/")
-const invController = require("../controllers/invController")
-const validate = require("../utilities/inventory-validation")
+const express = require("express");
+const router = new express.Router();
+const utilities = require("../utilities/");
+const invController = require("../controllers/invController");
+const validate = require("../utilities/inventory-validation");
+const Util = require("../utilities/"); // Assuming Util is exported from here
 
-// Route to build inventory by classification view
-router.get('/type/:classificationId', utilities.handleErrors(invController.buildByClassificationId));
+// public Routes (no auth required)
+router.get(
+  "/type/:classificationId",
+  utilities.handleErrors(invController.buildByClassificationId)
+);
+router.get(
+  "/detail/:id",
+  utilities.handleErrors(invController.getVehicleDetails)
+);
+router.get(
+  "/getInventory/:classification_id",
+  utilities.handleErrors(invController.getInventoryJSON)
+);
 
-// New route for individual vehicle details
-router.get('/detail/:id', utilities.handleErrors(invController.getVehicleDetails));
-
-// Build management view
-router.get("/", utilities.handleErrors(invController.buildManagementView))
-
-// Build table view
-router.get("/getInventory/:classification_id", utilities.handleErrors(invController.getInventoryJSON))
-
-// Route to modify inventory detail
-router.get("/edit/:id", utilities.handleErrors(invController.editInventoryView));
-router.post("/update/", 
-  validate.updateInventoryRules(), 
-  validate.checkUpdateData, 
-  utilities.handleErrors(invController.updateInventory))
-
-// Delete
-router.get("/delete/:id", utilities.handleErrors(invController.buildDeleteConfirmView));
-router.post("/delete/", utilities.handleErrors(invController.deleteInventoryItem));
-
-// Add GET routes for forms
-router.get("/add-classification", utilities.handleErrors(invController.buildAddClassification))
-router.get("/add-inventory", utilities.handleErrors(invController.buildAddInventory))
-
-// Add a new classification
-router.post("/add-classification", 
-  validate.classificationRules(), 
-  validate.checkClassificationData, 
+// Admin Routes (protected with checkAccountType)
+router.get(
+  "/",
+  Util.checkAccountType,
+  utilities.handleErrors(invController.buildManagementView)
+);
+router.get(
+  "/add-classification",
+  Util.checkAccountType,
+  utilities.handleErrors(invController.buildAddClassification)
+);
+router.post(
+  "/add-classification",
+  Util.checkAccountType,
+  validate.classificationRules(),
+  validate.checkClassificationData,
   utilities.handleErrors(invController.addClassification)
-)
-
-// Add a new inventory item
-router.post("/add-inventory", 
-  validate.inventoryRules(), 
-  validate.checkInventoryData, 
+);
+router.get(
+  "/add-inventory",
+  Util.checkAccountType,
+  utilities.handleErrors(invController.buildAddInventory)
+);
+router.post(
+  "/add-inventory",
+  Util.checkAccountType,
+  validate.inventoryRules(),
+  validate.checkInventoryData,
   utilities.handleErrors(invController.addInventory)
-)
+);
+router.get(
+  "/edit/:id",
+  Util.checkAccountType,
+  utilities.handleErrors(invController.editInventoryView)
+);
+router.post(
+  "/update/",
+  Util.checkAccountType,
+  validate.updateInventoryRules(),
+  validate.checkUpdateData,
+  utilities.handleErrors(invController.updateInventory)
+);
+router.get(
+  "/delete/:id",
+  Util.checkAccountType,
+  utilities.handleErrors(invController.buildDeleteConfirmView)
+);
+router.post(
+  "/delete",
+  Util.checkAccountType,
+  utilities.handleErrors(invController.deleteInventoryItem)
+);
 
 // Error handling middleware
 router.use((err, req, res, next) => {
-  console.error(err.stack)
-  res.status(500).send("Something broke!")
-})
+  console.error(err.stack);
+  res.status(500).send("Something broke!");
+});
 
 module.exports = router;
