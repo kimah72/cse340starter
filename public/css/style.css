@@ -327,7 +327,7 @@ input:required:valid {
   padding: 10px;
   font-size: 1rem;
   border: 1px solid var(--link-blue);
-  background-color: #e6f0fa;
+  background-color: #f1f8ff;
   border-radius: var(--border-radius);
 }
 
