@@ -1,5 +1,7 @@
-/******* Change Box Model ***************/
+/******* Global Styles ***************/
 @import url("https://fonts.googleapis.com/css2?family=Anton&family=Outfit:wght@100..900&display=swap");
+
+/* Reset and Box Model */
 *,
 *:before,
 *:after {
@@ -8,23 +10,41 @@
   padding: 0;
 }
 
+/* CSS Variables */
+:root {
+  --site-blue: #0fbfeb;
+  --site-blue-light: #65d9f6;
+  --link-blue: #0066FF;
+  --border-radius: 4px;
+  --shadow-sm: 0 2px 4px rgba(0, 0, 0, 0.1);
+  --shadow-md: 0 4px 8px rgba(0, 0, 0, 0.3);
+}
+
+/* Base Elements */
 body {
   font-size: 14px;
   font-family: "Anton", "Outfit", sans-serif;
+  overflow-x: hidden;
 }
 
 main {
   margin: 10px;
 }
 
-h1,
-h2,
-h3,
-p,
-li {
-  font-family: "Outfit";
+h1, h2, h3, p, li {
+  font-family: "Outfit", sans-serif;
   color: black;
 }
+
+h1 {
+  margin: 20px 0 25px;
+}
+
+img {
+  object-fit: cover;
+}
+
+/******* Layout ***************/
 
 /* Header */
 header {
@@ -35,32 +55,20 @@ header {
 }
 
 .siteName a {
-  font-family: Anton;
+  font-family: "Anton", sans-serif;
   text-decoration: none;
   font-size: 2em;
   color: black;
 }
 
 #tools a {
-  font-family: Anton;
+  font-family: "Anton", sans-serif;
   text-decoration: none;
   font-size: 1.25em;
   color: black;
 }
 
-/* Composition */
-.flow > * + * {
-  margin: 10em;
-}
-
-.grid-flow {
-  display: grid;
-  grid-template-columns: 1fr 1fr;
-  gap: 1em;
-}
-
 /* Navigation */
-
 .menu {
   display: flex;
   flex-direction: column;
@@ -84,30 +92,105 @@ header {
 .menu li {
   display: block;
 }
+
 .menu a {
   text-align: center;
-  padding: 0.5rem 0.5rem;
+  padding: 0.5rem;
   text-decoration: none;
   display: block;
   width: 100%;
   color: white;
 }
 
-/* Top Half of Main Page */
-
-h1 {
-  margin: 20px 0px;
+/* Footer */
+footer {
+  font-family: "Outfit", sans-serif;
+  margin: auto;
+  padding-left: 1em;
 }
 
-/* Flash Message Styling */
+footer a, .login a {
+  color: var(--link-blue);
+}
+
+/******* Components ***************/
+
+/* Buttons */
+button, .button {
+  display: inline-block;
+  padding: 5px 10px;
+  background-color: var(--site-blue);
+  border: 1px solid #055972;
+  color: black;
+  border-radius: var(--border-radius);
+  font-size: 1em;
+  font-weight: 600;
+  margin: 15px 0;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  text-decoration: none;
+}
+
+button:hover, .button:hover {
+  background-color: var(--site-blue-light);
+  transform: translateY(-2px);
+}
+
+/* Links */
+a {
+  color: var(--link-blue);
+  text-decoration: none;
+}
+
+a:hover {
+  text-decoration: underline;
+}
+
+/* Forms */
+form {
+  max-width: 300px;
+  margin: 0 auto;
+}
+
+form + p {
+  text-align: center;
+  margin-top: 20px;
+}
+
+label, input, textarea, button {
+  display: block;
+  margin-bottom: 10px;
+}
+
+input, textarea {
+  width: 100%;
+  padding: 8px;
+  border: 1px solid #ddd;
+  border-radius: var(--border-radius);
+}
+
+textarea {
+  height: 100px;
+  resize: vertical;
+}
+
+input:required:invalid, input:focus:invalid {
+  border: 2px solid red;
+}
+
+input:required:valid {
+  border: 2px solid green;
+}
+
+/* Notices */
 .notice {
   text-align: center;
   margin: 20px auto;
   max-width: 300px;
-  background-color: #33c2e6;
+  background-color: var(--site-blue);
   border: 1px solid #055972;
   padding: 10px;
-  border-radius: 4px;
+  border-radius: var(--border-radius);
   font-family: "Outfit", sans-serif;
   font-weight: bold;
   list-style-type: none;
@@ -118,20 +201,21 @@ h1 {
   padding: 5px 0;
 }
 
+/* Success (Unused Now, Kept for Reference) */
 .success {
   text-align: center;
   list-style-type: none;
   margin: 20px auto;
   max-width: 400px;
   padding: 10px;
-  border-radius: 4px;
+  border-radius: var(--border-radius);
   font-family: "Outfit", sans-serif;
   font-weight: bold;
   font-size: 2em;
 }
 
-/* register styling */
-.register .password-requirements {
+/* Password Requirements */
+.password-requirements {
   font-size: 0.8em;
   color: #666;
   margin-bottom: 10px;
@@ -141,16 +225,9 @@ h1 {
   margin-left: 20px;
 }
 
-input:required:invalid,
-input:focus:invalid {
-  border: 2px solid red;
-}
+/******* Page-Specific Styles ***************/
 
-input:required:valid {
-  border: 2px solid green;
-}
-
-/* Main page */
+/* Home Page */
 .delorean {
   display: flex;
   justify-content: center;
@@ -171,7 +248,6 @@ input:required:valid {
   left: 2.5%;
   margin-left: 2em;
   background-color: rgba(255, 255, 255, 0.5);
-  color: #0cb4df;
   padding: 20px;
 }
 
@@ -180,31 +256,14 @@ input:required:valid {
   padding: 2px;
 }
 
-.button {
-  display: inline-block;
-  padding: 6px;
-  background-color: #0cb4df;
-  color: white;
-  border-radius: 5px;
-  text-decoration: none;
-  box-shadow: 1px 1px 2.5px #2f3e46;
-  margin-top: 5px;
-}
-
-/* Bottom Half of Main Page */
 .bottom-grid {
   display: flex;
   flex-direction: column;
   margin: 20px;
 }
-.reviews {
-  text-align: left;
-}
 
-.reviews h3,
-.upgrades h3 {
-  margin-top: 25px;
-  margin-bottom: 20px;
+.reviews h3, .upgrades h3 {
+  margin: 25px 0 20px;
   font-size: 1.25rem;
 }
 
@@ -212,11 +271,6 @@ input:required:valid {
   margin: 0;
   padding: 0 0 0 15px;
   line-height: 1.75rem;
-}
-
-.upgrades div {
-  text-align: center;
-  justify-items: center;
 }
 
 .upgrades-grid {
@@ -231,8 +285,9 @@ input:required:valid {
 .upgrade-item {
   margin: 10px 0;
   padding: 20px;
-  background-color: #0cb4df;
-  border-radius: 5px;
+  background-color: var(--site-blue);
+  border: 1px solid #055972;
+  border-radius: var(--border-radius);
   display: flex;
   justify-content: center;
   align-items: center;
@@ -244,20 +299,48 @@ input:required:valid {
   margin: 0 auto;
 }
 
-/* error css */
-.error-page {
+/* Account Pages */
+.account {
+  max-width: 400px;
+  margin: 0 auto;
   text-align: center;
-  font-size: medium;
-}
-.fun-section {
-  margin: 0 5rem;
-  padding-top: 10px;
-  line-height: 2rem;
-  text-align: center;
-  font-size: medium;
 }
 
-/* Classification Grid Styles */
+.account h2 {
+  padding-top: 15px;
+  font-size: 2rem;
+}
+
+.account h2, .account h3, .account p {
+  margin-bottom: 25px;
+}
+
+.account h3 {
+  font-weight: bold;
+  padding: 5px;
+  border-radius: var(--border-radius);
+  font-size: 1.5rem;
+}
+
+.account p a {
+  font-weight: bold;
+  padding: 10px;
+  font-size: 1rem;
+  border: 1px solid var(--link-blue);
+  background-color: #e6f0fa;
+  border-radius: var(--border-radius);
+}
+
+.account p a:hover {
+  color: white;
+  background-color: var(--link-blue);
+}
+
+.account-form p {
+  padding: 0;
+}
+
+/* Inventory Pages */
 #inv-display {
   display: grid;
   grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
@@ -270,8 +353,8 @@ input:required:valid {
   list-style-type: none;
   background-color: #fff;
   border: 1px solid #e0e0e0;
-  border-radius: 8px;
-  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+  border-radius: var(--border-radius);
+  box-shadow: var(--shadow-sm);
   padding: 20px;
   display: flex;
   flex-direction: column;
@@ -291,7 +374,7 @@ input:required:valid {
 #inv-display img {
   max-width: 100%;
   height: auto;
-  border-radius: 4px;
+  border-radius: var(--border-radius);
   margin-bottom: 10px;
 }
 
@@ -319,16 +402,14 @@ input:required:valid {
   font-weight: bold;
 }
 
-/* styling for details */
-
 .vehicle-details {
   display: flex;
   flex-direction: column;
   margin: 20px;
   border: 1px solid #e0e0e0;
-  border-radius: 8px;
+  border-radius: var(--border-radius);
   padding: 20px;
-  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+  box-shadow: var(--shadow-sm);
 }
 
 .vehicle-image {
@@ -354,73 +435,6 @@ input:required:valid {
   width: 100px;
 }
 
-body,
-html {
-  overflow-x: hidden;
-}
-
-img {
-  object-fit: cover;
-}
-/* Login & Register css */
-
-form {
-  max-width: 300px;
-  margin: 0 auto;
-}
-form + p {
-  text-align: center;
-  margin-top: 20px;
-}
-
-label,
-input,
-button {
-  display: block;
-  margin-bottom: 10px;
-}
-
-input {
-  width: 100%;
-  padding: 8px;
-  border: 1px solid #ddd;
-  border-radius: 4px;
-}
-
-textarea {
-  width: 100%;
-  margin-bottom: 10px;
-  padding: 8px;
-  border: 1px solid #ddd;
-  border-radius: 4px;
-  height: 100px;
-  resize: vertical;
-}
-
-button {
-  background-color: #0cb4df;
-  color: white;
-  padding: 10px 15px;
-  margin: 10px 0px;
-  border: none;
-  border-radius: 4px;
-  cursor: pointer;
-}
-
-button:hover {
-  background-color: #0a9bd5;
-}
-
-a {
-  color: #007bff;
-  text-decoration: none;
-}
-
-a:hover {
-  text-decoration: underline;
-}
-
-/* Inventory management styling */
 .inv-management {
   display: flex;
   flex-direction: column;
@@ -429,69 +443,42 @@ a:hover {
 }
 
 .inv-management a {
+  width: 250px;
+  text-align: center;
   text-decoration: none;
   padding: 10px 20px;
-  margin: 0px;
-  background-color: #0cb4df;
-  color: white;
-  border-radius: 5px;
+  margin: 0;
+  background-color: var(--site-blue);
+  border: 1px solid #055972;
+  color: black;
+  border-radius: var(--border-radius);
   transition: all 0.3s ease;
   font-family: "Outfit", sans-serif;
-  font-size: 1.2em;
-  box-shadow: 0 2px 5px rgba(0, 0, 0, 0.2);
+  font-size: 1.25em;
+  box-shadow: var(--shadow-sm);
 }
 
 .inv-management a:hover {
-  background-color: #0a9bd5;
+  background-color: var(--site-blue-light);
   transform: translateY(-2px);
-  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.3);
+  box-shadow: var(--shadow-md);
 }
 
-/* Account management styling */
-.account {
-  max-width: 400px;
-  margin: 0 auto;
+/* Error Pages */
+.error-page {
   text-align: center;
+  font-size: medium;
 }
 
-.account h2 {
-  padding-top: 15px;
-  font-size: 2rem;
+.fun-section {
+  margin: 0 5rem;
+  padding-top: 10px;
+  line-height: 2rem;
+  text-align: center;
+  font-size: medium;
 }
 
-.account h2, h3, p {
-  margin-bottom: 25px;
-}
-
-.account h3 {
-  font-weight: bold;
-  padding: 5px;
-  border-radius: 4px;
-  font-size: 1.5rem;
-}
-
-.account p a {
-  font-weight: bold;
-  padding: 10px;
-  font-size: 1rem;
-  border: 1px solid #007bff;
-  background-color: #e6f0fa;
-  border-radius: 4px;
-}
-
-.account p a:hover {
-  color: white;
-  background-color: #007bff;
-}
-
-/* Footer */
-footer {
-  font-family: "Outfit";
-  margin: auto;
-  padding-left: 1em;
-}
-
-/* table container */
+/* Tables */
 #inventoryDisplay {
   width: 100%;
   max-width: 400px;
@@ -500,7 +487,6 @@ footer {
   font-family: Arial, sans-serif;
 }
 
-/* Header styling */
 #inventoryDisplay thead th {
   background-color: #333;
   color: white;
@@ -508,23 +494,19 @@ footer {
   text-align: left;
 }
 
-/* Body styling */
 #inventoryDisplay tbody td {
   padding: 10px;
   border-bottom: 1px solid #ddd;
 }
 
-/* Alternating row colors */
 #inventoryDisplay tbody tr:nth-child(even) {
   background-color: #f9f9f9;
 }
 
-/* Hover effect */
 #inventoryDisplay tbody tr:hover {
   background-color: #f1f1f1;
 }
 
-/* Link styling */
 #inventoryDisplay a {
   text-decoration: none;
   font-family: Arial, sans-serif;
@@ -540,27 +522,27 @@ footer {
   margin-bottom: 10px;
   padding: 8px;
   border: 1px solid #ddd;
-  border-radius: 4px;
+  border-radius: var(--border-radius);
   font-family: "Outfit", sans-serif;
   font-size: 1em;
   background-color: white;
 }
 
 #classificationList:focus {
-  border-color: #0cb4df; /* Matches your button color */
+  border-color: var(--site-blue);
   outline: none;
 }
 
-/* delete p styling */
+/* Misc */
 .confirm {
   text-align: center;
   color: red;
   font-weight: bolder;
   text-decoration: underline;
-  margin: 10px 0px;
+  margin: 10px 0;
 }
 
-/* Media for larger screens */
+/******* Media Queries ***************/
 
 @media (min-width: 600px) {
   body {
@@ -568,6 +550,7 @@ footer {
     background-repeat: repeat;
     background-size: 375px 375px;
   }
+
   #wrapper {
     margin: 20px 75px;
     max-width: 960px;
@@ -575,73 +558,88 @@ footer {
     justify-self: center;
     padding: 10px;
     background-color: white;
-    border: 5px solid #30aece;
-    border-radius: 5px;
+    border: 5px solid var(--site-blue);
+    border-radius: var(--border-radius);
   }
+
   .menu {
     font-size: 1.5em;
   }
-  menu ul {
+
+  .menu ul {
     padding: 1rem;
   }
-  menu a {
+
+  .menu a {
     padding: 0.5rem 1rem;
   }
+
   .delorean img {
     margin: 0;
     width: 100%;
     max-width: 600px;
   }
+
   .car-info {
     padding: 20px;
     top: 8%;
     left: 12%;
   }
+
   .bottom-grid {
     display: grid;
     grid-template-columns: 1fr 1fr;
     grid-template-rows: 1fr;
     gap: 25px;
   }
+
   .reviews {
-    grid-column: 2/3;
-    grid-row: 1/2;
+    grid-column: 2 / 3;
+    grid-row: 1 / 2;
   }
+
   .upgrades {
     grid-column: 1 / 2;
     grid-row: 1 / 2;
     text-align: center;
   }
+
   .upgrade-item {
     height: 100px;
     width: 150px;
   }
+
   .upgrade-item img {
     max-width: 100px;
     height: auto;
   }
+
   #inv-display {
-    display: grid;
     grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
     gap: 20px;
     padding: 20px;
   }
+
   .namePrice {
     text-align: left;
   }
+
   .vehicle-details {
     flex-direction: row;
   }
+
   .vehicle-image {
     flex: 1 1 100%;
     margin-right: 20px;
     margin-bottom: 0;
   }
+
   .vehicle-image img {
     max-width: 100%;
     height: 100%;
     object-fit: contain;
   }
+
   .vehicle-content {
     flex: 1 1 50%;
   }

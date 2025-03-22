@@ -29,7 +29,7 @@ async function buildRegister(req, res, next) {
 }
 
 /* ****************************************
- *  Deliver management view
+ *  Deliver management view 
  * *************************************** */
 async function buildManagement(req, res, next) {
   let nav = await utilities.getNav();
@@ -41,7 +41,7 @@ async function buildManagement(req, res, next) {
 }
 
 /* ****************************************
- *  Build Update Account View
+ *  Build Update Account View - step 3 of task 5
  * ************************************ */
 async function buildUpdateAccountView(req, res) {
   let nav = await utilities.getNav();
@@ -138,7 +138,7 @@ async function accountLogin(req, res) {
 }
 
 /* ****************************************
- *  Update Account Information
+ *  Update Account Information - for user name and email
  * ************************************ */
 async function updateAccount(req, res) {
   let nav = await utilities.getNav();
@@ -154,7 +154,7 @@ async function updateAccount(req, res) {
       res.cookie("jwt", accessToken, { httpOnly: true, secure: true, maxAge: 3600 * 1000 });
     }
     req.flash("notice", "Account updated successfully");
-    res.redirect("/account/");
+    res.redirect("/account/"); // delivers management view
   } else {
     req.flash("notice", "Account update failed");
     res.status(501).render("account/update-account", {
@@ -170,7 +170,7 @@ async function updateAccount(req, res) {
 }
 
 /* ****************************************
- *  Change Password
+ *  Change Password - for password
  * ************************************ */
 async function changePassword(req, res) {
   let nav = await utilities.getNav();
@@ -179,7 +179,7 @@ async function changePassword(req, res) {
   const updateResult = await accountModel.updatePassword(account_id, hashedPassword);
   if (updateResult) {
     req.flash("notice", "Password changed successfully");
-    res.redirect("/account/");
+    res.redirect("/account/"); // delivers management view
   } else {
     const accountData = await accountModel.getAccountById(account_id);
     req.flash("notice", "Password change failed");
