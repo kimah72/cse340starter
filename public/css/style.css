@@ -123,8 +123,7 @@ button, .button {
   border: 1px solid #055972;
   color: black;
   border-radius: var(--border-radius);
-  font-size: 1em;
-  font-weight: 600;
+  font-size: 1.1em;
   margin: 15px 0;
   cursor: pointer;
   transition: all 0.3s ease;
