@@ -124,7 +124,7 @@ button, .button {
   color: black;
   border-radius: var(--border-radius);
   font-size: 1.1em;
-  margin: 10px 0px;
+  margin: 10px 0; /* if I want buttons centered just have to add auto*/
   cursor: pointer;
   transition: all 0.3s ease;
   text-decoration: none;
