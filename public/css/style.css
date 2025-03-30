@@ -135,6 +135,22 @@ button:hover, .button:hover {
   transform: translateY(-2px);
 }
 
+button.review {
+  background: none;
+  border: none;
+  color: var(--link-blue);
+  text-decoration: none;
+  padding: 0; 
+  margin: 10px auto ; 
+  font-size: 0.9em; 
+  cursor: pointer;
+}
+
+button.review:hover {
+  color: var(--link-blue);
+  text-decoration: underline;
+  transform: none;
+}
 /* Links */
 a {
   color: var(--link-blue);
@@ -181,6 +197,34 @@ input:required:valid {
   border: 2px solid green;
 }
 
+form.account-form {
+  max-width: 400px;
+  margin: 20px auto;
+  padding: 15px;
+  background-color: #f9f9f9;
+  border-radius: var(--border-radius);
+}
+
+form.account-form label {
+  margin-bottom: 5px;
+}
+
+form.account-form textarea {
+  width: 100%;
+  padding: 8px;
+  border: 1px solid #ddd;
+  border-radius: var(--border-radius);
+  min-height: 100px;
+}
+
+form.account-form input[type="hidden"] {
+  display: none;
+}
+
+form.account-form button {
+  margin-top: 10px;
+}
+
 /* Notices */
 .notice {
   text-align: center;
@@ -211,6 +255,42 @@ input:required:valid {
   font-family: "Outfit", sans-serif;
   font-weight: bold;
   font-size: 2em;
+}
+
+/* Review List */
+ul.reviews {
+  list-style: none;
+  padding: 0;
+  margin: 20px 0;
+  max-width: 600px;
+}
+
+ul.reviews li {
+  background-color: #fff;
+  border: 1px solid #ddd;
+  border-radius: var(--border-radius);
+  padding: 15px;
+  margin-bottom: 15px;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+}
+
+ul.reviews li p {
+  margin: 5px 0;
+}
+
+ul.reviews li p:first-child {
+  font-weight: 600; 
+}
+
+ul.reviews li a {
+  color: var(--link-blue);
+  text-decoration: none;
+  margin-right: 10px;
+}
+
+ul.reviews li a:hover {
+  color: var(--link-blue);
+  text-decoration: underline;
 }
 
 /* Password Requirements */

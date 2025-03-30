@@ -1,4 +1,5 @@
 const invModel = require("../models/inventory-model")
+const reviewModel = require("../models/review-model");
 const utilities = require("../utilities/")
 const invCont = {}
 
@@ -29,13 +30,16 @@ invCont.buildByClassificationId = async function (req, res, next) {
 }
 
 /* ***************************
- * Build vehicle details for specific inventory item
+ * Build vehicle details for specific inventory item with reviews
  * ***************************/
 invCont.getVehicleDetails = async function (req, res) {
+  const id = parseInt(req.params.id);
+  console.log("Vehicle ID:", id);
+  let nav;
   try {
-    const vehicle = await invModel.getVehicleById(req.params.id);
-    if (!vehicle) {
-      let nav = await utilities.getNav()
+    nav = await utilities.getNav();
+    const vehicleData = await invModel.getVehicleById(id);
+    if (!vehicleData) {
       return res.render("./errors/error", {
         title: "404 Error",
         status: 404,
@@ -43,29 +47,30 @@ invCont.getVehicleDetails = async function (req, res) {
         nav
       });
     }
-    // This will force an error
-    // const undefinedValue = undefined;
-    // undefinedValue.nonExistentProperty;
-    
-    const html = utilities.formatVehicleDetails(vehicle);
-    let nav = await utilities.getNav()
-    res.render("./inventory/detail", { 
-      title: `${vehicle.inv_make} ${vehicle.inv_model} Details`,
+    const html = utilities.formatVehicleDetails(vehicleData);
+    const reviewData = await reviewModel.getReviewsByInvId(id);
+    const reviews = reviewData.rows || [];
+    console.log("Reviews:", reviews);
+    console.log("Rendering with:", { vehicle: html, reviews, accountData: res.locals.accountData });
+    res.render("./inventory/detail", {
+      title: `${vehicleData.inv_make} ${vehicleData.inv_model} Details`,
       nav,
-      vehicle: html 
+      vehicle: html,
+      reviews,
+      id, // Match route param :id
+      errors: null
     });
-    
   } catch (error) {
     console.error("Error in getVehicleDetails:", error);
-    let nav = await utilities.getNav()
     res.status(500).render("./errors/error", {
       title: "500 Error",
       status: 500,
       message: "An error occurred while fetching vehicle details.",
-      nav
+      nav: nav || await utilities.getNav() // Fallback
     });
   }
-}
+};
+
 
 /* ***************************
 *  Build Management View

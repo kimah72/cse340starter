@@ -19,6 +19,9 @@ const pool = require('./database')
 const accountRoute = require('./routes/accountRoute');
 const bodyParser = require("body-parser")
 const cookieParser = require("cookie-parser")
+const reviewRoute = require("./routes/reviewRoute");
+
+
 
 /* ***********************
  * Middleware
@@ -66,6 +69,9 @@ app.get("/", utilities.handleErrors(baseController.buildHome))
 app.use("/inv", inventoryRoute)
 // Account Routes
 app.use("/account", accountRoute)
+// Review routes
+app.use("/review", reviewRoute);
+
 // Server crash
 app.get("/trigger-500-error", (req, res, next) => {
   const undefinedValue = undefined;

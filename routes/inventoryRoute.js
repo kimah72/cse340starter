@@ -3,7 +3,7 @@ const router = new express.Router();
 const utilities = require("../utilities/");
 const invController = require("../controllers/invController");
 const validate = require("../utilities/inventory-validation");
-const Util = require("../utilities/"); // Assuming Util is exported from here
+const Util = require("../utilities/");
 
 // public Routes (no auth required)
 router.get(

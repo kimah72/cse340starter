@@ -3,6 +3,7 @@ require("dotenv").config();
 const accountModel = require("../models/account-model");
 const utilities = require("../utilities/");
 const bcrypt = require("bcryptjs");
+const reviewModel = require("../models/review-model");
 
 /* ****************************************
  *  Deliver login view
@@ -33,10 +34,20 @@ async function buildRegister(req, res, next) {
  * *************************************** */
 async function buildManagement(req, res, next) {
   let nav = await utilities.getNav();
+  const accountData = res.locals.accountData;
+  let reviews = []; 
+  try {
+    const reviewData = await reviewModel.getReviewsByAccountId(accountData.account_id);
+    reviews = reviewData.rows || []; 
+  } catch (error) {
+    console.error("Error fetching reviews:", error);
+    req.flash("notice", "Couldn’t load reviews—try again later.");
+  }
   res.render("account/management", {
     title: "Account Management",
     nav,
-    errors: null,
+    reviews,
+    errors: null
   });
 }
 
