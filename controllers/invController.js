@@ -34,7 +34,6 @@ invCont.buildByClassificationId = async function (req, res, next) {
  * ***************************/
 invCont.getVehicleDetails = async function (req, res) {
   const id = parseInt(req.params.id);
-  console.log("Vehicle ID:", id);
   let nav;
   try {
     nav = await utilities.getNav();
@@ -50,14 +49,12 @@ invCont.getVehicleDetails = async function (req, res) {
     const html = utilities.formatVehicleDetails(vehicleData);
     const reviewData = await reviewModel.getReviewsByInvId(id);
     const reviews = reviewData.rows || [];
-    console.log("Reviews:", reviews);
-    console.log("Rendering with:", { vehicle: html, reviews, accountData: res.locals.accountData });
     res.render("./inventory/detail", {
       title: `${vehicleData.inv_make} ${vehicleData.inv_model} Details`,
       nav,
       vehicle: html,
       reviews,
-      id, // Match route param :id
+      id,
       errors: null
     });
   } catch (error) {
@@ -66,7 +63,7 @@ invCont.getVehicleDetails = async function (req, res) {
       title: "500 Error",
       status: 500,
       message: "An error occurred while fetching vehicle details.",
-      nav: nav || await utilities.getNav() // Fallback
+      nav: nav || await utilities.getNav()
     });
   }
 };

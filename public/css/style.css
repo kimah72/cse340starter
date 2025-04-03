@@ -395,7 +395,7 @@ ul.reviews li a:hover {
 }
 
 .account h2, .account h3, .account p {
-  margin-bottom: 25px;
+  margin-bottom: 30px;
 }
 
 .account h3 {
@@ -404,6 +404,7 @@ ul.reviews li a:hover {
   border-radius: var(--border-radius);
   font-size: 1.5rem;
 }
+
 
 .account p a {
   font-weight: bold;
